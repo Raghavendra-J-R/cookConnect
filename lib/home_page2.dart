@@ -15,17 +15,17 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: HomePage2(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
+class HomePage2 extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage2> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
