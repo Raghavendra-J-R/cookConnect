@@ -33,7 +33,9 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  },
                   child: const Text('Login'),
                 ),
               ],
