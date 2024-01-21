@@ -92,12 +92,13 @@ class HomePage extends StatelessWidget {
           CarouselSlider(
             items: [
               // Add your images here
-              Image.asset('assets/image1.jpg'),
-              Image.asset('assets/image2.jpg'),
-              Image.asset('assets/image3.jpg'),
+              Image.asset('assets/pic1.jpg'),
+              Image.asset('assets/pic2.jpg'),
+              Image.asset('assets/pic3.jpg'),
             ],
             options: CarouselOptions(
               height: 200,
+
               autoPlay: true,
               enlargeCenterPage: true,
             ),
@@ -122,7 +123,7 @@ class HomePage extends StatelessWidget {
             cookName: 'John Doe',
             specialty: 'Italian Cuisine',
             availability: 'Available Now',
-            profileImagePath: 'assets/cook_profile.jpg',
+            profileImagePath: 'assets/veg.jpg',
             category: 'Veg',
           ),
 
@@ -153,13 +154,13 @@ class CategorySelectionWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Veg category
-          CategoryItemWidget('Veg', 'assets/veg_icon.png'),
+          CategoryItemWidget('Veg', 'assets/veg.jpg'),
 
           // Spacer for some separation
           SizedBox(width: 20),
 
           // Non-Veg category
-          CategoryItemWidget('Non-Veg', 'assets/non_veg_icon.png'),
+          CategoryItemWidget('Non-Veg', 'assets/nonveg.jpg'),
         ],
       ),
     );
