@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
               title: Text('Log Out'),
               onTap: () {
                 // Navigate to the Find a Cook page or screen
-                Navigator.pop(context); // Close the Drawer
+                Navigator.pushReplacementNamed(context,'/logout'); // Close the Drawer
                 // You can add further navigation logic here
               },
             ),// Add more ListTiles for other pages as needed

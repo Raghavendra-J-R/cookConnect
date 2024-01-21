@@ -7,6 +7,7 @@ import './rate_review.dart';
 import './faq.dart';
 import './about_us.dart';
 import './find_cook.dart';
+import './logout_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/faq': (context)=>FAQPage(),
         '/about':(context)=>AboutUsPage(),
         '/cook':(context)=>FindACookPage(),
+        '/logout':(context)=>LogoutPage(),
       },
       // Start with the SplashScreen
     );
