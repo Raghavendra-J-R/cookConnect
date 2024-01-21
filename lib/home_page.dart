@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
               title: Text('Find a Cook'),
               onTap: () {
                 // Navigate to the Find a Cook page or screen
-                Navigator.pushReplacementNamed(context,'/home'); // Close the Drawer
+                Navigator.pushReplacementNamed(context,'/cook'); // Close the Drawer
                 // You can add further navigation logic here
               },
             ),

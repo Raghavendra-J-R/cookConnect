@@ -9,7 +9,7 @@ class AboutUsPage extends StatelessWidget {
         title: Text('About Us'),
       ),
       body:Center(
-    child:Padding(
+       child:Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +60,12 @@ class AboutUsPage extends StatelessWidget {
               'Backend Developer',
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
-
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacementNamed(context,'/home'); // Navigate back to the previous screen (home page)
+              },
+              child: Text('Back to Home'),
+            ),
           ],
         ),
     ),
