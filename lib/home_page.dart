@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
               title: Text('FAQ'),
               onTap: () {
                 // Navigate to the Find a Cook page or screen
-                Navigator.pop(context); // Close the Drawer
+                Navigator.pushReplacementNamed(context,'/faq');// Close the Drawer
                 // You can add further navigation logic here
               },
             ),

@@ -4,6 +4,7 @@ import './register.dart';
 import './login_page.dart';
 import './home_page.dart';
 import './rate_review.dart';
+import './faq.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/home': (context)=> HomePage(),
         '/rate' : (context)=> RateAndReviewPage(),
+        '/faq': (context)=>FAQPage(),
       },
       // Start with the SplashScreen
     );
