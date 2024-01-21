@@ -8,7 +8,8 @@ class AboutUsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('About Us'),
       ),
-      body: Padding(
+      body:Center(
+    child:Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,8 +60,10 @@ class AboutUsPage extends StatelessWidget {
               'Backend Developer',
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
+
           ],
         ),
+    ),
       ),
     );
   }
