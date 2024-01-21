@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
               title: Text('Ratings and Reviews'),
               onTap: () {
                 // Navigate to the Find a Cook page or screen
-                Navigator.pop(context); // Close the Drawer
+                Navigator.pushReplacementNamed(context,'/rate');// Close the Drawer
                 // You can add further navigation logic here
               },
             ),
