@@ -19,15 +19,6 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('CookConnect'),
         // Adding a Drawer button
-        actions: [
-          IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {
-              // Open the Drawer when the menu icon is pressed
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-        ],
       ),
       // Drawer widget
       drawer: Drawer(
@@ -36,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.amber,
               ),
               child: Text(
                 'CookConnect',
