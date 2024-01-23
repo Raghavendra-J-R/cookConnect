@@ -14,7 +14,14 @@ class _RateAndReviewPageState extends State<RateAndReviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rate and Review'),
+        title: const Text('Rate and Review'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            // Navigate back to the home page
+            Navigator.pushReplacementNamed(context, '/home');
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -22,11 +29,11 @@ class _RateAndReviewPageState extends State<RateAndReviewPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Rating Stars
-            Text(
+            const Text(
               'Rate the Cook:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             RatingBar(
               onRatingChanged: (value) {
                 setState(() {
@@ -39,23 +46,23 @@ class _RateAndReviewPageState extends State<RateAndReviewPage> {
               emptyColor: Colors.grey,
               size: 30,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // Review Text Field
-            Text(
+            const Text(
               'Write a Review:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               controller: reviewController,
               maxLines: 5,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Type your review here...',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // Submit Button
             ElevatedButton(
@@ -66,9 +73,10 @@ class _RateAndReviewPageState extends State<RateAndReviewPage> {
                 // Example: if (rating > 0 && reviewController.text.isNotEmpty) { /* submit */ }
                 // Add your logic here
                 // After submitting, you can navigate back or perform any other desired action
-                Navigator.pop(context); // For example, navigate back to the previous screen
+                Navigator.pop(
+                    context); // For example, navigate back to the previous screen
               },
-              child: Text('Submit'),
+              child: const Text('Submit'),
             ),
           ],
         ),

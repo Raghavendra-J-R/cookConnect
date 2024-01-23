@@ -5,15 +5,18 @@ class FAQPage extends StatelessWidget {
   final List<FAQItem> faqItems = [
     FAQItem(
       question: 'How do I book a cook?',
-      answer: 'To book a cook, navigate to the "Find a Cook" section and follow the instructions to select a cook and schedule a booking.',
+      answer:
+          'To book a cook, navigate to the "Find a Cook" section and follow the instructions to select a cook and schedule a booking.',
     ),
     FAQItem(
       question: 'Can I cancel a booking?',
-      answer: 'Yes, you can cancel a booking by going to the "My Bookings" section and selecting the booking you want to cancel. Follow the prompts to cancel the booking.',
+      answer:
+          'Yes, you can cancel a booking by going to the "My Bookings" section and selecting the booking you want to cancel. Follow the prompts to cancel the booking.',
     ),
     FAQItem(
       question: 'How can I contact customer support?',
-      answer: 'For assistance, please contact our customer support team at support@example.com or call our helpline at (123) 456-7890.',
+      answer:
+          'For assistance, please contact our customer support team at support@example.com or call our helpline at (123) 456-7890.',
     ),
     // Add more FAQ items as needed
   ];
@@ -23,6 +26,13 @@ class FAQPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('FAQ'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            // Navigate back to the home page
+            Navigator.pushReplacementNamed(context, '/home');
+          },
+        ),
       ),
       body: ListView.builder(
         itemCount: faqItems.length,

@@ -23,12 +23,12 @@ class MyApp extends StatelessWidget {
         '/': (context) => SplashScreen(),
         '/register': (context) => RegistrationPage(),
         '/login': (context) => LoginPage(),
-        '/home': (context)=> HomePage(),
-        '/rate' : (context)=> RateAndReviewPage(),
-        '/faq': (context)=>FAQPage(),
-        '/about':(context)=>AboutUsPage(),
-        '/cook':(context)=>FindACookPage(),
-        '/logout':(context)=>LogoutPage(),
+        '/home': (context) => HomePage(),
+        '/home/rate': (context) => RateAndReviewPage(),
+        '/home/faq': (context) => FAQPage(),
+        '/home/about': (context) => AboutUsPage(),
+        '/home/cook': (context) => FindACookPage(),
+        '/home/logout': (context) => LogoutPage(),
       },
       // Start with the SplashScreen
     );

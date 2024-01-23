@@ -15,6 +15,13 @@ class _FindACookPageState extends State<FindACookPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Find a Cook'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            // Navigate back to the home page
+            Navigator.pushReplacementNamed(context, '/home');
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -28,18 +35,18 @@ class _FindACookPageState extends State<FindACookPage> {
                 setState(() {
                   suggestions = availableCooks
                       .where((cook) =>
-                      cook.name.toLowerCase().contains(value.toLowerCase()))
+                          cook.name.toLowerCase().contains(value.toLowerCase()))
                       .map((cook) => cook.name)
                       .toList();
                 });
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Search for a cook...',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // Auto-Suggestions
             if (suggestions.isNotEmpty)
@@ -80,14 +87,12 @@ class CookCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: ListTile(
-        leading: CircleAvatar(
+        leading: const CircleAvatar(
           radius: 30,
           backgroundImage: AssetImage('assets/prof3.jpg'),
-
         ),
-
         title: Text(cook.name),
         subtitle: Text(cook.specialty),
         onTap: () {
@@ -109,9 +114,18 @@ class Cook {
 }
 
 List<Cook> availableCooks = [
-  Cook(name: 'Cook Pratham', specialty: 'North Karnataka', imagePath: 'assets/prof1.jpg'),
-  Cook(name: 'Cook Rathan', specialty: 'Karavalli style', imagePath: 'assets/prof2.jpg'),
-  Cook(name: 'Cook Balaji', specialty: 'South Indian', imagePath: 'assets/prof3.jpg'),
+  Cook(
+      name: 'Cook Pratham',
+      specialty: 'North Karnataka',
+      imagePath: 'assets/prof1.jpg'),
+  Cook(
+      name: 'Cook Rathan',
+      specialty: 'Karavalli style',
+      imagePath: 'assets/prof2.jpg'),
+  Cook(
+      name: 'Cook Balaji',
+      specialty: 'South Indian',
+      imagePath: 'assets/prof3.jpg'),
   // Add more cooks as needed
 ];
 

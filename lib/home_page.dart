@@ -6,24 +6,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('CookConnect'),
-        // Adding a Drawer button
-        actions: [
-          IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {
-              // Open the Drawer when the menu icon is pressed
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-        ],
+        title: const Text('CookConnect'),
       ),
-      // Drawer widget
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
@@ -36,89 +25,68 @@ class HomePage extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('Home'),
+              title: const Text('Home'),
               onTap: () {
-                // Navigate to the Home page
-                Navigator.pop(context); // Close the Drawer
-                // You can add further navigation logic here
+                Navigator.pop(context, '/home');
               },
             ),
             ListTile(
-              title: Text('Find a Cook'),
+              title: const Text('Find a Cook'),
               onTap: () {
-                // Navigate to the Find a Cook page or screen
-                Navigator.pushReplacementNamed(context,'/cook'); // Close the Drawer
-                // You can add further navigation logic here
+                Navigator.pushReplacementNamed(context, '/home/cook');
               },
             ),
             ListTile(
-              title: Text('Ratings and Reviews'),
+              title: const Text('Ratings and Reviews'),
               onTap: () {
-                // Navigate to the Find a Cook page or screen
-                Navigator.pushReplacementNamed(context,'/rate');// Close the Drawer
-                // You can add further navigation logic here
+                Navigator.pushReplacementNamed(context, '/home/rate');
               },
             ),
             ListTile(
-              title: Text('FAQ'),
+              title: const Text('FAQ'),
               onTap: () {
-                // Navigate to the Find a Cook page or screen
-                Navigator.pushReplacementNamed(context,'/faq');// Close the Drawer
-                // You can add further navigation logic here
+                Navigator.pushReplacementNamed(context, '/home/faq');
               },
             ),
             ListTile(
-              title: Text('About Us'),
+              title: const Text('About Us'),
               onTap: () {
-                // Navigate to the Find a Cook page or screen
-                Navigator.pushReplacementNamed(context,'/about');// Close the Drawer
-                // You can add further navigation logic here
+                Navigator.pushReplacementNamed(context, '/home/about');
               },
             ),
             ListTile(
-              title: Text('Log Out'),
+              title: const Text('Log Out'),
               onTap: () {
-                // Navigate to the Find a Cook page or screen
-                Navigator.pushReplacementNamed(context,'/logout'); // Close the Drawer
-                // You can add further navigation logic here
+                Navigator.pushReplacementNamed(context, '/home/logout');
               },
-            ),// Add more ListTiles for other pages as needed
+            ),
           ],
         ),
       ),
       body: Column(
         children: [
-          // Carousel section
           CarouselSlider(
             items: [
-              // Add your images here
               Image.asset('assets/pic1.jpg'),
               Image.asset('assets/pic2.jpg'),
               Image.asset('assets/pic3.jpg'),
             ],
             options: CarouselOptions(
               height: 200,
-
               autoPlay: true,
               enlargeCenterPage: true,
             ),
           ),
-          SizedBox(height: 20),
-          // Offers and Discounts section
-          ListTile(
+          const SizedBox(height: 20),
+          const ListTile(
             title: Text(
               'Special Offers and Discounts',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             subtitle: Text('Check out our latest offers and discounts!'),
           ),
-          // Your offer and discount widgets go here
-
-          // Category selection
           CategorySelectionWidget(),
-
-          // Cook details section
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           CookDetailsWidget(
             cookName: 'John Doe',
             specialty: 'Italian Cuisine',
@@ -126,17 +94,12 @@ class HomePage extends StatelessWidget {
             profileImagePath: 'assets/veg.jpg',
             category: 'Veg',
           ),
-
-          // "Book your cook now!" line
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              // Navigate to the "Find a Cook" screen or perform the desired action
-              // For now, print a message to the console
-              Navigator.pushReplacementNamed(context, '/home2');
-              print('Find a Cook button pressed!');
+              Navigator.pushReplacementNamed(context, '/home/cook');
             },
-            child: Text('Find a Cook'),
+            child: const Text('Find a Cook'),
           ),
         ],
       ),
@@ -149,17 +112,12 @@ class CategorySelectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Veg category
           CategoryItemWidget('Veg', 'assets/veg.jpg'),
-
-          // Spacer for some separation
-          SizedBox(width: 20),
-
-          // Non-Veg category
+          const SizedBox(width: 20),
           CategoryItemWidget('Non-Veg', 'assets/nonveg.jpg'),
         ],
       ),
@@ -177,13 +135,11 @@ class CategoryItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Circular image with text
         CircleAvatar(
           radius: 50,
           backgroundImage: AssetImage(iconImagePath),
         ),
-        SizedBox(height: 5),
-        // Category name text
+        const SizedBox(height: 5),
         Text(categoryName),
       ],
     );
@@ -207,11 +163,12 @@ class CookDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String cookDetails = "Cook: $cookName\nSpecialty: $specialty\nAvailability: $availability";
+    String cookDetails =
+        "Cook: $cookName\nSpecialty: $specialty\nAvailability: $availability";
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(10),
@@ -219,24 +176,19 @@ class CookDetailsWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Cook's profile picture
           CircleAvatar(
             radius: 40,
             backgroundImage: AssetImage(profileImagePath),
           ),
-          SizedBox(height: 10),
-
-          // Category (Veg/Non-Veg)
+          const SizedBox(height: 10),
           Text(
             category,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 10),
-
-          // Cook details text
+          const SizedBox(height: 10),
           Text(
             cookDetails,
-            style: TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16),
             textAlign: TextAlign.center,
           ),
         ],
@@ -244,5 +196,3 @@ class CookDetailsWidget extends StatelessWidget {
     );
   }
 }
-
-
