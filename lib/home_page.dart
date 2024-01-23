@@ -1,13 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void _handleMenuIconPressed() {
+    _scaffoldKey.currentState?.openDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CookConnect'),
+        title: Text('CookConnect'),
+        // Adding a Drawer button
+        actions: [
+          IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              // Open the Drawer when the menu icon is pressed
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+        ],
       ),
+      // Drawer widget
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -97,7 +119,10 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushReplacementNamed(context, '/home/cook');
+              // Navigate to the "Find a Cook" screen or perform the desired action
+              // For now, print a message to the console
+              Navigator.pushReplacementNamed(context, '/home2');
+              print('Find a Cook button pressed!');
             },
             child: const Text('Find a Cook'),
           ),
