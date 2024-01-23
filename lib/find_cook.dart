@@ -1,7 +1,15 @@
 // TODO Implement this library.
 import 'package:flutter/material.dart';
 
-class FindACookPage extends StatelessWidget {
+class FindACookPage extends StatefulWidget {
+  @override
+  _FindACookPageState createState() => _FindACookPageState();
+}
+
+class _FindACookPageState extends State<FindACookPage> {
+  TextEditingController _searchController = TextEditingController();
+  List<String> suggestions = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,8 +21,18 @@ class FindACookPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Search Bar
+            // Search Bar with Auto-Suggest
             TextField(
+              controller: _searchController,
+              onChanged: (value) {
+                setState(() {
+                  suggestions = availableCooks
+                      .where((cook) =>
+                      cook.name.toLowerCase().contains(value.toLowerCase()))
+                      .map((cook) => cook.name)
+                      .toList();
+                });
+              },
               decoration: InputDecoration(
                 hintText: 'Search for a cook...',
                 prefixIcon: Icon(Icons.search),
@@ -22,6 +40,20 @@ class FindACookPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
+
+            // Auto-Suggestions
+            if (suggestions.isNotEmpty)
+              Container(
+                height: 100,
+                child: ListView.builder(
+                  itemCount: suggestions.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(suggestions[index]),
+                    );
+                  },
+                ),
+              ),
 
             // List of Available Cooks
             Expanded(
@@ -47,13 +79,15 @@ class CookCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 3,
+      elevation: 6,
       margin: EdgeInsets.symmetric(vertical: 10),
       child: ListTile(
         leading: CircleAvatar(
           radius: 30,
-          backgroundImage: AssetImage(cook.imagePath),
+          backgroundImage: AssetImage('assets/prof3.jpg'),
+
         ),
+
         title: Text(cook.name),
         subtitle: Text(cook.specialty),
         onTap: () {
@@ -75,9 +109,9 @@ class Cook {
 }
 
 List<Cook> availableCooks = [
-  Cook(name: 'Chef John', specialty: 'Italian Cuisine', imagePath: 'assets/chef1.jpg'),
-  Cook(name: 'Chef Emily', specialty: 'Japanese Sushi', imagePath: 'assets/chef2.jpg'),
-  Cook(name: 'Chef Alex', specialty: 'Mexican Tacos', imagePath: 'assets/chef3.jpg'),
+  Cook(name: 'Cook Pratham', specialty: 'North Karnataka', imagePath: 'assets/prof1.jpg'),
+  Cook(name: 'Cook Rathan', specialty: 'Karavalli style', imagePath: 'assets/prof2.jpg'),
+  Cook(name: 'Cook Balaji', specialty: 'South Indian', imagePath: 'assets/prof3.jpg'),
   // Add more cooks as needed
 ];
 
