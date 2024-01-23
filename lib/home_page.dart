@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class HomePage extends StatelessWidget {
+
+  class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+  }
+
+  class _HomePageState extends State<HomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void _handleMenuIconPressed() {
+  _scaffoldKey.currentState?.openDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('CookConnect'),
-        // Adding a Drawer button
-
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {
-              // Open the Drawer when the menu icon is pressed
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-
-      ),
+  return Scaffold(
+  key: _scaffoldKey,
+  appBar: AppBar(
+  backgroundColor: Colors.blue,
+  title: Text('CookConnect'),
+  leading: IconButton(
+  icon: Icon(Icons.menu),
+  onPressed: _handleMenuIconPressed,
+  ),
+  ),
       // Drawer widget
       drawer: Drawer(
         child: ListView(
