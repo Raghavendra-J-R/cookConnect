@@ -73,8 +73,7 @@ class _RateAndReviewPageState extends State<RateAndReviewPage> {
                 // Example: if (rating > 0 && reviewController.text.isNotEmpty) { /* submit */ }
                 // Add your logic here
                 // After submitting, you can navigate back or perform any other desired action
-                Navigator.pop(
-                    context); // For example, navigate back to the previous screen
+                Navigator.pushReplacementNamed(context, '/home');
               },
               child: const Text('Submit'),
             ),
