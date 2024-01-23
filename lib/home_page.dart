@@ -8,15 +8,15 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('CookConnect'),
         // Adding a Drawer button
-        actions: [
-          IconButton(
+
+          leading: IconButton(
             icon: Icon(Icons.menu),
             onPressed: () {
               // Open the Drawer when the menu icon is pressed
               Scaffold.of(context).openDrawer();
             },
           ),
-        ],
+
       ),
       // Drawer widget
       drawer: Drawer(
