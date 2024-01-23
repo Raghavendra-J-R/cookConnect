@@ -133,7 +133,7 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               // Navigate to the "Find a Cook" screen or perform the desired action
               // For now, print a message to the console
-              Navigator.pushReplacementNamed(context, '/home2');
+              Navigator.pushReplacementNamed(context, '/cook');
               print('Find a Cook button pressed!');
             },
             child: Text('Find a Cook'),
