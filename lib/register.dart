@@ -39,7 +39,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   margin:
                       EdgeInsets.only(right: 16), // Adjust the margin as needed
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/home');
+                    },
                     child: const Text('Register'),
                   ),
                 ),
@@ -48,7 +50,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       EdgeInsets.only(left: 16), // Adjust the margin as needed
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/login');
+
                     },
                     child: Text('Login'),
                   ),
