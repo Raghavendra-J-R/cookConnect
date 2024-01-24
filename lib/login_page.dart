@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'register.dart'; // Import your register page
 
 class LoginPage extends StatefulWidget {
   @override
@@ -30,16 +31,24 @@ class _LoginPageState extends State<LoginPage> {
             buildTextFormField('Password', _passwordController,
                 isPassword: true),
             const SizedBox(height: 16),
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/home');
-                  },
-                  child: const Text('Login'),
+            Center(
+              child: InkWell(
+                onTap: () {
+                  // Navigate to the register page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RegistrationPage()),
+                  );
+                },
+                child: Text(
+                  'New to CookConnect? Register here',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
-              ],
-            )
+              ),
+            ),
           ],
         ),
       ),

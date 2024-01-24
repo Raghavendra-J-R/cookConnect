@@ -1,3 +1,4 @@
+import 'package:bookcook/login_page.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
 
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => RegistrationPage()),
+        MaterialPageRoute(builder: (context) => LoginPage()),
       );
     });
   }
