@@ -1,4 +1,4 @@
-# cook
+# CookConnect
 
 A new Flutter project.
 
