@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'register.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -35,29 +33,13 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               children: [
                 ElevatedButton(
-                  onPressed: () async {
-                    try {
-                      UserCredential userCredential =
-                          await _auth.signInWithEmailAndPassword(
-                        email: _emailController.text,
-                        password: _passwordController.text,
-                      );
-
-                      // If login is successful, navigate to home page
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text('Succesfully Logged in')));
-                      Navigator.pushReplacementNamed(context, '/home');
-                    } catch (e) {
-                      print("Error during login: $e");
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Error Loggin In')));
-                      // Handle login error (show error message, etc.)
-                    }
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/home');
                   },
                   child: const Text('Login'),
                 ),
-              ],
-            )
+              ),
+            ),
           ],
         ),
       ),
