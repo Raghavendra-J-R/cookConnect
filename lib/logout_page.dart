@@ -9,7 +9,7 @@ class LogoutPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Logout'),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.lightBlue,
       ),
       body: Center(
         child: Padding(
