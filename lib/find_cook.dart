@@ -14,9 +14,10 @@ class _FindACookPageState extends State<FindACookPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Find a Cook'),
+        title: const Text('Find a Cook'),
+        backgroundColor: Colors.amber,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             // Navigate back to the home page
             Navigator.pushReplacementNamed(context, '/home');
@@ -50,7 +51,7 @@ class _FindACookPageState extends State<FindACookPage> {
 
             // Auto-Suggestions
             if (suggestions.isNotEmpty)
-              Container(
+              SizedBox(
                 height: 100,
                 child: ListView.builder(
                   itemCount: suggestions.length,
@@ -128,9 +129,3 @@ List<Cook> availableCooks = [
       imagePath: 'assets/prof3.jpg'),
   // Add more cooks as needed
 ];
-
-void main() {
-  runApp(MaterialApp(
-    home: FindACookPage(),
-  ));
-}

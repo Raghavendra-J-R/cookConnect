@@ -26,6 +26,7 @@ class FAQPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('FAQ'),
+        backgroundColor: Colors.amber,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -57,10 +58,4 @@ class FAQItem {
   final String answer;
 
   FAQItem({required this.question, required this.answer});
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: FAQPage(),
-  ));
 }

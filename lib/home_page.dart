@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('CookConnect'),
+        backgroundColor: Colors.amber,
         // Adding a Drawer button
       ),
       // Drawer widget

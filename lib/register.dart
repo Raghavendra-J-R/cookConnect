@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -9,6 +11,30 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final DatabaseReference _userDatabaseRef =
+      FirebaseDatabase.instance.ref().child('users');
+  Future<void> _register() async {
+    try {
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      String userId = userCredential.user?.uid ?? '';
+
+      _userDatabaseRef.child(userId).set({
+        'username': _usernameController.text,
+        'email': _emailController.text,
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Succesfully Registered')));
+      Navigator.pushNamed(context, '/login');
+    } catch (e) {
+      print("Error during registration: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,26 +62,22 @@ class _RegistrationPageState extends State<RegistrationPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  margin:
-                      EdgeInsets.only(right: 16), // Adjust the margin as needed
+                  margin: EdgeInsets.only(right: 16),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: _register,
                     child: const Text('Register'),
                   ),
                 ),
                 Container(
-                  margin:
-                      EdgeInsets.only(left: 16), // Adjust the margin as needed
+                  margin: EdgeInsets.only(left: 16),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/login');
-                    },
+                    onPressed: () {},
                     child: Text('Login'),
                   ),
                 ),
               ],
-            )
-          ],
+            ),
+          ], // Add the missing closing parenthesis here
         ),
       ),
     );
