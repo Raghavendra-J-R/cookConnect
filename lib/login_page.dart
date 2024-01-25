@@ -40,10 +40,10 @@ class _LoginPageState extends State<LoginPage> {
                   MaterialPageRoute(builder: (context) => RegistrationPage()),
                 );
               },
-              child: Text(
+              child: const Text(
                 'New to CookConnect? Register here',
                 style: TextStyle(
-                  color: Colors.blue,
+                  color: Colors.amber,
                   decoration: TextDecoration.underline,
                 ),
               ),
