@@ -64,7 +64,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 Container(
                   margin: EdgeInsets.only(right: 16),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: _register,
                     child: const Text('Register'),
                   ),
                 ),
