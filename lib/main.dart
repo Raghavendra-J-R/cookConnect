@@ -8,7 +8,6 @@ import './rate_review.dart';
 import './faq.dart';
 import './about_us.dart';
 import './find_cook.dart';
-import './logout_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +40,6 @@ class MyApp extends StatelessWidget {
         '/home/faq': (context) => FAQPage(),
         '/home/about': (context) => AboutUsPage(),
         '/home/cook': (context) => FindACookPage(),
-        '/home/logout': (context) => LogoutPage(),
       },
       // Start with the SplashScreen
     );
