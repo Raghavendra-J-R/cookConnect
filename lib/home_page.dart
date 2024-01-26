@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   @override
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   _HomePageState createState() => _HomePageState();
 }
 
@@ -71,7 +73,49 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               title: const Text('Log Out'),
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/home/logout');
+                showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                      height: 200,
+                      color: Colors.amber,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            const Text('Are you sure you want to logout?'),
+                            ElevatedButton(
+                              child: const Text('Logout'),
+                              onPressed: () async {
+                                try {
+                                  await widget._auth
+                                      .signOut(); // Use widget._auth here
+                                  print('User logged out!');
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Successfully Logged out'),
+                                    ),
+                                  );
+                                  // Navigate back to the login page
+                                  Navigator.pushReplacementNamed(
+                                      context, '/login');
+                                } catch (e) {
+                                  print('Error during logout: $e');
+                                }
+                              },
+                            ),
+                            const SizedBox(height: 10),
+                            ElevatedButton(
+                              child: const Text('Cancel'),
+                              onPressed: () => Navigator.pop(context),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
               },
             ),
           ],
