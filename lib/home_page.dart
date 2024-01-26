@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class HomePage extends StatefulWidget {
   @override
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  String _selectedTile = '';
   _HomePageState createState() => _HomePageState();
 }
 
@@ -41,16 +42,13 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             ListTile(
-              title: const Text('Home'),
-              onTap: () {
-                Navigator.pop(context, '/home');
-              },
-            ),
-            ListTile(
               title: const Text('Find a Cook'),
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/home/cook');
               },
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
             ),
             ListTile(
               title: const Text('Ratings and Reviews'),
