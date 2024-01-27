@@ -9,6 +9,7 @@ class FindACookPage extends StatefulWidget {
 class _FindACookPageState extends State<FindACookPage> {
   TextEditingController _searchController = TextEditingController();
   List<String> suggestions = [];
+  String selectedFilter = 'Both';
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,26 @@ class _FindACookPageState extends State<FindACookPage> {
             Navigator.pushReplacementNamed(context, '/home');
           },
         ),
+        actions: [
+          // Filter dropdown
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: DropdownButton<String>(
+              value: selectedFilter,
+              onChanged: (String? newValue) {
+                setState(() {
+                  selectedFilter = newValue!;
+                });
+              },
+              items: ['Veg', 'Non-Veg', 'Both'].map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -68,7 +89,13 @@ class _FindACookPageState extends State<FindACookPage> {
               child: ListView.builder(
                 itemCount: availableCooks.length,
                 itemBuilder: (context, index) {
-                  return CookCard(cook: availableCooks[index]);
+                  if ((selectedFilter == 'Veg' && availableCooks[index].isVeg) ||
+                      (selectedFilter == 'Non-Veg' && !availableCooks[index].isVeg) ||
+                      selectedFilter == 'Both') {
+                    return CookCard(cook: availableCooks[index]);
+                  } else {
+                    return SizedBox.shrink(); // Hide the cook card if it doesn't match the filter
+                  }
                 },
               ),
             ),
@@ -110,22 +137,31 @@ class Cook {
   final String name;
   final String specialty;
   final String imagePath;
+  final bool isVeg;
 
-  Cook({required this.name, required this.specialty, required this.imagePath});
+  Cook({
+    required this.name,
+    required this.specialty,
+    required this.imagePath,
+    required this.isVeg,
+  });
 }
 
 List<Cook> availableCooks = [
   Cook(
       name: 'Cook Pratham',
       specialty: 'North Karnataka',
-      imagePath: 'assets/prof1.jpg'),
+      imagePath: 'assets/prof1.jpg',
+      isVeg: true),
   Cook(
       name: 'Cook Rathan',
       specialty: 'Karavalli style',
-      imagePath: 'assets/prof2.jpg'),
+      imagePath: 'assets/prof2.jpg',
+      isVeg: false),
   Cook(
       name: 'Cook Balaji',
       specialty: 'South Indian',
-      imagePath: 'assets/prof3.jpg'),
+      imagePath: 'assets/prof3.jpg',
+      isVeg: false),
   // Add more cooks as needed
 ];

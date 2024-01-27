@@ -9,11 +9,15 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void _handleMenuIconPressed() {
     _scaffoldKey.currentState?.openDrawer();
+  }
+  void _handleProfileIconPressed() {
+    Navigator.pushReplacementNamed(context, '/profile');
   }
 
   @override
@@ -22,7 +26,13 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('CookConnect'),
         backgroundColor: Colors.amber,
-        // Adding a Drawer button
+        actions: [
+          // Profile icon button
+          IconButton(
+            icon: Icon(Icons.account_circle),
+            onPressed: _handleProfileIconPressed,
+          ),
+        ],// Adding a Drawer button
       ),
       // Drawer widget
       drawer: Drawer(
@@ -255,3 +265,4 @@ class CookDetailsWidget extends StatelessWidget {
     );
   }
 }
+
