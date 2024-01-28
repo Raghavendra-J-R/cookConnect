@@ -129,7 +129,8 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Column(
+      body:SingleChildScrollView(
+       child:Column(
         children: [
           CarouselSlider(
             items: [
@@ -151,16 +152,25 @@ class _HomePageState extends State<HomePage> {
             ),
             subtitle: Text('Check out our latest offers and discounts!'),
           ),
-          CategorySelectionWidget(),
+
+
           const SizedBox(height: 20),
-          CookDetailsWidget(
-            cookName: 'John Doe',
-            specialty: 'Italian Cuisine',
-            availability: 'Available Now',
-            profileImagePath: 'assets/veg.jpg',
-            category: 'Veg',
-          ),
-          const SizedBox(height: 20),
+          Row(
+           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+           children: [
+           SquareCard('Book for one Meal', 'assets/card1.jpg'),
+           SquareCard('Book for a Day', 'assets/card2.jpg'),
+           ],
+           ),
+         const SizedBox(height: 20),
+         Row(
+         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+         children: [
+         SquareCard('Book for a party', 'assets/card3.jpg'),
+         SquareCard('Book for a month', 'assets/card4.jpg'),
+          ],
+         ),
+        const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               // Navigate to the "Find a Cook" screen or perform the desired action
@@ -172,97 +182,48 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class CategorySelectionWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CategoryItemWidget('Veg', 'assets/veg.jpg'),
-          const SizedBox(width: 20),
-          CategoryItemWidget('Non-Veg', 'assets/nonveg.jpg'),
-        ],
       ),
     );
   }
 }
 
-class CategoryItemWidget extends StatelessWidget {
-  final String categoryName;
-  final String iconImagePath;
+class SquareCard extends StatelessWidget {
+  final String title;
+  final String imagePath;
 
-  CategoryItemWidget(this.categoryName, this.iconImagePath);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CircleAvatar(
-          radius: 50,
-          backgroundImage: AssetImage(iconImagePath),
-        ),
-        const SizedBox(height: 5),
-        Text(categoryName),
-      ],
-    );
-  }
-}
-
-class CookDetailsWidget extends StatelessWidget {
-  final String cookName;
-  final String specialty;
-  final String availability;
-  final String profileImagePath;
-  final String category;
-
-  CookDetailsWidget({
-    required this.cookName,
-    required this.specialty,
-    required this.availability,
-    required this.profileImagePath,
-    required this.category,
-  });
+  SquareCard(this.title, this.imagePath);
 
   @override
   Widget build(BuildContext context) {
-    String cookDetails =
-        "Cook: $cookName\nSpecialty: $specialty\nAvailability: $availability";
-
     return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(10),
+      width: 150,
+      height: 200,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircleAvatar(
-            radius: 40,
-            backgroundImage: AssetImage(profileImagePath),
-          ),
-          const SizedBox(height: 10),
           Text(
-            category,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            cookDetails,
-            style: const TextStyle(fontSize: 16),
+            title,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
+          Image.asset(
+            imagePath,
+            width: 140,
+            height: 160,
+            fit: BoxFit.cover,
+          ),
+          const SizedBox(height: 10),
+
         ],
       ),
     );
   }
 }
+
+
+
 

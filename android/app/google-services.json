@@ -1,21 +1,22 @@
 {
   "project_info": {
-    "project_number": "708912598125",
-    "project_id": "cookconnect-5fa1c",
-    "storage_bucket": "cookconnect-5fa1c.appspot.com"
+    "project_number": "720390771822",
+    "firebase_url": "https://flutterlogin-f1e55-default-rtdb.firebaseio.com",
+    "project_id": "flutterlogin-f1e55",
+    "storage_bucket": "flutterlogin-f1e55.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:708912598125:android:9f5fc09e4a0bd152390364",
+        "mobilesdk_app_id": "1:720390771822:android:96e564a015170bba6b827f",
         "android_client_info": {
-          "package_name": "com.example.cook"
+          "package_name": "com.example.register"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA23_hEHbDwCJpRIM7ZoG05HEoC3vcWRbo"
+          "current_key": "AIzaSyAdEZOyGP2dM2PAUa9-tJfXx3wT_g7vKas"
         }
       ],
       "services": {

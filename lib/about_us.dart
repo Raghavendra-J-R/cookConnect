@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class AboutUsPage extends StatelessWidget {
@@ -6,73 +5,56 @@ class AboutUsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About Us'),
-        backgroundColor: Colors.amber,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            // Navigate back to the home page
-            Navigator.pushReplacementNamed(context, '/home');
-          },
+        title: Text('About Us'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Welcome to CookConnect!',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'At CookConnect, we believe that great food brings people together. Our app is designed to connect passionate cooks with food enthusiasts, creating a platform where delicious meals and culinary experiences are just a click away.',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Key Features:',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '🍲 Find Your Perfect Cook: Browse through a diverse range of cooks, each with their unique specialties and culinary expertise. Whether you crave homemade comfort food or exotic international cuisines, CookConnect has the right cook for you.',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '🌟 Rate and Review: Share your dining experience by providing ratings and reviews for the meals you enjoy. Help others discover the best cooks and dishes in your community.',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '👩‍🍳 Connect with Cooks: Learn more about the talented cooks behind the meals. Follow your favorite cooks, get updates on their latest creations, and build a community around your love for good food.',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Join us on this culinary journey and experience the joy of home-cooked meals like never before. CookConnect – where great food and community come together!',
+              style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+            ),
+          ],
         ),
       ),
-      body: const Center(
-          // child: Padding(
-          //   padding: EdgeInsets.all(16.0),
-          //   child: Column(
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          //       CircleAvatar(
-          //         radius: 50,
-          //         backgroundImage:
-          //             AssetImage('assets/raghavendra.jpg'), // Add your images
-          //       ),
-          //       SizedBox(height: 10),
-          //       Text(
-          //         'Raghavendra JR',
-          //         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          //       ),
-          //       SizedBox(height: 10),
-          //       Text(
-          //         'Lead Developer',
-          //         style: TextStyle(fontSize: 16, color: Colors.grey),
-          //       ),
-          //       SizedBox(height: 20),
-          //       CircleAvatar(
-          //         radius: 50,
-          //         backgroundImage:
-          //             AssetImage('assets/priyanka.jpg'), // Add your images
-          //       ),
-          //       SizedBox(height: 10),
-          //       Text(
-          //         'Priyanka Anand D',
-          //         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          //       ),
-          //       SizedBox(height: 10),
-          //       Text(
-          //         'UI/UX Designer',
-          //         style: TextStyle(fontSize: 16, color: Colors.grey),
-          //       ),
-          //       SizedBox(height: 20),
-          //       CircleAvatar(
-          //         radius: 50,
-          //         backgroundImage:
-          //             AssetImage('assets/prajwal.jpg'), // Add your images
-          //       ),
-          //       SizedBox(height: 10),
-          //       Text(
-          //         'Prajwal C Jain',
-          //         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          //       ),
-          //       SizedBox(height: 10),
-          //       Text(
-          //         'Backend Developer',
-          //         style: TextStyle(fontSize: 16, color: Colors.grey),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          child: Text('This is about Page')),
     );
   }
 }

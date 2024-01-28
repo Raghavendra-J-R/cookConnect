@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bookcook/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 import './register.dart';
 import './login_page.dart';
 import './home_page.dart';
@@ -14,11 +15,11 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey:
-          "AIzaSyA23_hEHbDwCJpRIM7ZoG05HEoC3vcWRbo", // paste your api key here
+          "AIzaSyAdEZOyGP2dM2PAUa9-tJfXx3wT_g7vKas", // paste your api key here
       appId:
-          "1:708912598125:android:9f5fc09e4a0bd152390364", //paste your app id here
-      messagingSenderId: "764674678447", //paste your messagingSenderId here
-      projectId: "cookconnect-5fa1c", //paste your project id here"
+          "1:720390771822:android:96e564a015170bba6b827f", //paste your app id here
+      messagingSenderId: "720390771822", //paste your messagingSenderId here
+      projectId: "flutterlogin-f1e55", //paste your project id here"
     ),
   );
 
