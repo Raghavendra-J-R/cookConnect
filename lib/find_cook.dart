@@ -16,7 +16,7 @@ class _FindACookPageState extends State<FindACookPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Find a Cook'),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.lightBlue,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
