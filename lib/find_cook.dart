@@ -1,6 +1,6 @@
 // TODO Implement this library.
 import 'package:flutter/material.dart';
-
+import 'cook_details.dart';
 class FindACookPage extends StatefulWidget {
   @override
   _FindACookPageState createState() => _FindACookPageState();
@@ -123,6 +123,16 @@ class CookCard extends StatelessWidget {
         ),
         title: Text(cook.name),
         subtitle: Text(cook.specialty),
+        trailing: ElevatedButton(
+          onPressed: () {
+            // Navigate to CookDetailsPage
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CookDetailsPage(cook: cook)),
+            );
+          },
+          child: Text('Book'),
+        ),
         onTap: () {
           // TODO: Navigate to the cook's details page or perform the desired action
           // For now, print a message to the console
@@ -132,6 +142,7 @@ class CookCard extends StatelessWidget {
     );
   }
 }
+
 
 class Cook {
   final String name;
