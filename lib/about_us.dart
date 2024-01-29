@@ -6,6 +6,12 @@ class AboutUsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('About Us'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacementNamed(context,'/home');
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
