@@ -9,6 +9,12 @@ import './rate_review.dart';
 import './faq.dart';
 import './about_us.dart';
 import './find_cook.dart';
+import './cook_details.dart';
+import './bookpage.dart';
+import './noofppl.dart';
+import './select_date.dart';
+import '/select_time.dart';
+import '/final_book.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,6 +47,12 @@ class MyApp extends StatelessWidget {
         '/home/faq': (context) => FAQPage(),
         '/home/about': (context) => AboutUsPage(),
         '/home/cook': (context) => FindACookPage(),
+        '/cookdetails': (context)=> CookDetailsPage(),
+        '/bookpage' :(context)=> BookPage(),
+        '/noofppl':(context)=> NoOfPpl(),
+        '/date' :(context)=> SelectDate(),
+        '/time' : (context) =>SelectTime(),
+        '/final' :(context) =>FinalBook(),
       },
       // Start with the SplashScreen loader
     );

@@ -16,7 +16,7 @@ class _FindACookPageState extends State<FindACookPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Find a Cook'),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.orangeAccent,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -126,10 +126,7 @@ class CookCard extends StatelessWidget {
         trailing: ElevatedButton(
           onPressed: () {
             // Navigate to CookDetailsPage
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CookDetailsPage(cook: cook)),
-            );
+            Navigator.pushReplacementNamed(context,'/cookdetails');
           },
           child: Text('Book'),
         ),

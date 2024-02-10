@@ -26,7 +26,7 @@ class FAQPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('FAQ'),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.orangeAccent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

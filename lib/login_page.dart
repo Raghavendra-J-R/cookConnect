@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.orangeAccent,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
               child: const Text(
                 'New to CookConnect? Register here',
                 style: TextStyle(
-                  color: Colors.amber,
+                  color: Colors.orangeAccent,
                   decoration: TextDecoration.underline,
                 ),
               ),

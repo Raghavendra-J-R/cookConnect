@@ -15,7 +15,7 @@ class _RateAndReviewPageState extends State<RateAndReviewPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Rate and Review'),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.orangeAccent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

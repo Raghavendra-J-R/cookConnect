@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('CookConnect'),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.orangeAccent,
         actions: [
           // Profile icon button
           IconButton(
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.amber,
+                color: Colors.orangeAccent,
               ),
               child: Text(
                 'CookConnect',
