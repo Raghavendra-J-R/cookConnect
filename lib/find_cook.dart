@@ -1,6 +1,6 @@
-// TODO Implement this library.
 import 'package:flutter/material.dart';
 import 'cook_details.dart';
+
 class FindACookPage extends StatefulWidget {
   @override
   _FindACookPageState createState() => _FindACookPageState();
@@ -35,7 +35,8 @@ class _FindACookPageState extends State<FindACookPage> {
                   selectedFilter = newValue!;
                 });
               },
-              items: ['Veg', 'Non-Veg', 'Both'].map<DropdownMenuItem<String>>((String value) {
+              items: ['Veg', 'Non-Veg', 'Both']
+                  .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -89,12 +90,15 @@ class _FindACookPageState extends State<FindACookPage> {
               child: ListView.builder(
                 itemCount: availableCooks.length,
                 itemBuilder: (context, index) {
-                  if ((selectedFilter == 'Veg' && availableCooks[index].isVeg) ||
-                      (selectedFilter == 'Non-Veg' && !availableCooks[index].isVeg) ||
+                  if ((selectedFilter == 'Veg' &&
+                          availableCooks[index].isVeg) ||
+                      (selectedFilter == 'Non-Veg' &&
+                          !availableCooks[index].isVeg) ||
                       selectedFilter == 'Both') {
                     return CookCard(cook: availableCooks[index]);
                   } else {
-                    return SizedBox.shrink(); // Hide the cook card if it doesn't match the filter
+                    return SizedBox
+                        .shrink(); // Hide the cook card if it doesn't match the filter
                   }
                 },
               ),
@@ -126,20 +130,19 @@ class CookCard extends StatelessWidget {
         trailing: ElevatedButton(
           onPressed: () {
             // Navigate to CookDetailsPage
-            Navigator.pushReplacementNamed(context,'/cookdetails');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CookDetailsPage(cook: cook),
+              ),
+            );
           },
           child: Text('Book'),
         ),
-        onTap: () {
-          // TODO: Navigate to the cook's details page or perform the desired action
-          // For now, print a message to the console
-          print('Cook selected: ${cook.name}');
-        },
       ),
     );
   }
 }
-
 
 class Cook {
   final String name;
