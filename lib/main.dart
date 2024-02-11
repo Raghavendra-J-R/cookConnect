@@ -47,12 +47,11 @@ class MyApp extends StatelessWidget {
         '/home/faq': (context) => FAQPage(),
         '/home/about': (context) => AboutUsPage(),
         '/home/cook': (context) => FindACookPage(),
-        '/cookdetails': (context)=> CookDetailsPage(),
-        '/bookpage' :(context)=> BookPage(),
-        '/noofppl':(context)=> NoOfPpl(),
-        '/date' :(context)=> SelectDate(),
-        '/time' : (context) =>SelectTime(),
-        '/final' :(context) =>FinalBook(),
+        '/bookpage': (context) => BookPage(),
+        '/noofppl': (context) => NoOfPpl(),
+        '/date': (context) => SelectDate(),
+        '/time': (context) => SelectTime(),
+        '/final': (context) => FinalBook(),
       },
       // Start with the SplashScreen loader
     );
