@@ -11,6 +11,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _numberController = TextEditingController();
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final DatabaseReference _userDatabaseRef =
       FirebaseDatabase.instance.ref().child('users');
@@ -38,48 +40,104 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Register'),
-        backgroundColor: Colors.orangeAccent,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Create an Account',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
-            buildTextFormField('Username', _usernameController),
-            const SizedBox(height: 16),
-            buildTextFormField('Email', _emailController),
-            const SizedBox(height: 16),
-            buildTextFormField('Password', _passwordController,
-                isPassword: true),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(right: 16),
-                  child: ElevatedButton(
-                    onPressed: _register,
-                    child: const Text('Register'),
+      body: Container(
+        padding: EdgeInsets.all(10.0),
+        height: height,
+        width: width,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(0, 5, 0, 2),
+                width: width * 0.75,
+                height: height * 0.35,
+                child: Image.asset(
+                  'assets/cook2.jpg',
+                  fit: BoxFit.fill,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Register',
+                      style: TextStyle(
+                          fontSize: 25.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30.0,
+              ),
+              TextField(
+                controller: _emailController,
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  suffixIcon: const Icon(Icons.email),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: 16),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/login');
-                    },
-                    child: Text('Login'),
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              TextField(
+                obscureText: true,
+                controller: _passwordController,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  suffixIcon: const Icon(Icons.visibility_off),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                 ),
-              ],
-            ),
-          ], // Add the missing closing parenthesis here
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              TextField(
+                obscureText: false,
+                controller: _numberController,
+                decoration: InputDecoration(
+                  hintText: 'Mobile',
+                  suffixIcon: const Icon(Icons.call),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 30.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: _register,
+                      child: const Text('Register'),
+                    ),
+                    ElevatedButton(
+                      child: const Text('Login'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/login');
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20.0),
+            ],
+          ),
         ),
       ),
     );
