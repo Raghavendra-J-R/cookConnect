@@ -8,7 +8,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Food Ordering App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -19,84 +20,212 @@ class MyApp extends StatelessWidget {
 
 class SelectTime extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _BookPageState createState() => _BookPageState();
 }
 
-class _MyHomePageState extends State<SelectTime> {
-  String selectedTime = 'Select Time';
+class _BookPageState extends State<SelectTime> {
+  int _numPeople = 1;
+  bool _isBreakfastSelected = false;
+  bool _isLunchSelected = false;
+  bool _isDinnerSelected = false;
+  bool _isAllSelected = false;
+
+  void _selectPeople(int numPeople) {
+    setState(() {
+      _numPeople = numPeople;
+    });
+  }
+
+  void _selectMeal(String meal) {
+    if (meal == 'Breakfast') {
+      _isBreakfastSelected = true;
+      _isLunchSelected = false;
+      _isDinnerSelected = false;
+      _isAllSelected = false;
+    } else if (meal == 'Lunch') {
+      _isBreakfastSelected = false;
+      _isLunchSelected = true;
+      _isDinnerSelected = false;
+      _isAllSelected = false;
+    } else if (meal == 'Dinner') {
+      _isBreakfastSelected = false;
+      _isLunchSelected = false;
+      _isDinnerSelected = true;
+      _isAllSelected = false;
+    } else if (meal == 'all') {
+      _isBreakfastSelected = false;
+      _isLunchSelected = false;
+      _isDinnerSelected = false;
+      _isAllSelected = true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Your preferred timing'),
-      ),
-      body: Column(
-        children: <Widget>[
-          ListTile(
-            title: Text('Breakfast'),
-            trailing: DropdownButton<String>(
-              value: selectedTime,
-              onChanged: (String? newValue) {
-                setState(() {
-                  selectedTime = newValue!;
-                });
-              },
-              items: <String>['Select Time', '7:00 AM', '7:30 AM', '8:00 AM']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-          ),
-          ListTile(
-            title: Text('Dinner'),
-            trailing: DropdownButton<String>(
-              value: selectedTime,
-              onChanged: (String? newValue) {
-                setState(() {
-                  selectedTime = newValue!;
-                });
-              },
-              items: <String>['Select Time', '7:00 PM', '7:30 PM', '8:00 PM']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              'Daily Visit\n1 Hour',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: Container(
-        width: double.infinity, // Set width to 100%
-        padding: EdgeInsets.symmetric(horizontal: 16.0), // Add horizontal padding
-        child: ElevatedButton(
-          onPressed: () {
-            // Handle button press
-            Navigator.pushReplacementNamed(context, '/date');
-          },
-          child: Text('Continue'),
-          style: ElevatedButton.styleFrom(
-            primary: Colors.orange, // Set button color to orange
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat, // Align button at the bottom center
+        appBar: AppBar(
+        title: Text('Food Ordering App'),
+    ),
+    body: SingleChildScrollView(
+    child: Padding(
+    padding: const EdgeInsets.all(20.0),
+    child: Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: [
+    Text(
+    'What would you like to have on the day of trial?',
+    style: TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    ),
+    ),
+    SizedBox(height: 20),
+    Text(
+    'Name of your favourite cuisine',
+    style: TextStyle(
+    fontSize: 16,
+    color: Colors.grey[600],
+    ),
+    ),
+    SizedBox(height: 10),
+    Container(
+    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+    decoration: BoxDecoration(
+    border: Border.all(color: Colors.grey),
+    borderRadius: BorderRadius.circular(5),
+    ),
+    child: Row(
+    children: [
+    Icon(
+    Icons.restaurant,
+    size: 20,
+    color: Colors.grey[600],
+    ),
+    SizedBox(width: 10),
+    Expanded(
+    child: TextFormField(
+    decoration: InputDecoration(
+    hintText: 'Enter cuisine name',
+    border: InputBorder.none,
+    ),
+    ),
+    ),
+    ],
+    ),
+    ),
+    SizedBox(height: 20),
+    Text(
+    'Select Number of People?',
+    style: TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    ),
+    ),
+    SizedBox(height: 10),
+    Row(
+    children: [
+    Radio(
+    value: 1,
+    groupValue: _numPeople,
+    onChanged: (value) {
+    _selectPeople(value as int);
+    },
+    ),
+    Text('1'),
+    Radio(
+    value: 2,
+    groupValue: _numPeople,
+    onChanged: (value) {
+    _selectPeople(value as int);
+    },
+    ),
+    Text('2'),
+    Radio(
+    value: 3,
+    groupValue: _numPeople,
+    onChanged: (value) {
+    _selectPeople(value as int);
+    },
+    ),
+    Text('3'),
+    Radio(
+    value: 4,
+    groupValue: _numPeople,
+    onChanged: (value) {
+    _selectPeople(value as int);
+    },
+    ),
+    Text('4+'),
+    ],
+    ),
+    SizedBox(height: 20),
+    Text(
+    'Select Meal Time',
+    style: TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    ),
+    ),
+    SizedBox(height: 10),
+    Column(
+    children: [
+    Row(
+    children: [
+    Checkbox(
+    value: _isBreakfastSelected,
+    onChanged: (value) {
+    _selectMeal(value! ? 'Breakfast' : 'all');
+    },
+    ),
+    Text('Breakfast'),
+    ],
+    ),
+    Row(
+    children: [
+    Checkbox(
+    value: _isLunchSelected,
+    onChanged: (value) {
+    _selectMeal(value! ? 'Lunch' : 'all');
+    },
+    ),
+    Text('Lunch'),
+    ],
+    ),
+    Row(
+    children: [
+    Checkbox(
+    value: _isDinnerSelected,
+    onChanged: (value) {
+    _selectMeal(value! ? 'Dinner' : 'all');
+    },
+    ),
+    Text('Dinner'),
+    ],
+    ),
+    ],
+    ),
+    SizedBox(height: 20),
+    Center(
+    child:ElevatedButton(
+    onPressed: () {
+      Navigator.pushReplacementNamed(context, '/date');
+    },
+    child: Text('Submit'),
+    style: ElevatedButton.styleFrom(
+    primary: Colors.blue,
+    onPrimary: Colors.white,
+    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+    shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(5),
+    ),
+    ),
+    ),
+
+    ),
+    ],
+    ),
+    ),
+    )
     );
   }
 }

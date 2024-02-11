@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart'; // Import the table_calendar package
+import 'package:table_calendar/table_calendar.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -9,7 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Preferred Time',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -20,111 +22,147 @@ class MyApp extends StatelessWidget {
 
 class SelectDate extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _SelectDateState createState() => _SelectDateState();
 }
 
-class _MyHomePageState extends State<SelectDate> {
-  String selectedTime = 'Select Time';
-
-  CalendarFormat _calendarFormat = CalendarFormat.month;
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
+class _SelectDateState extends State<SelectDate> {
+  int _hour = 9;
+  int _minute = 41;
+  DateTime _selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your preferred timing'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacementNamed(context,'/time');
-          },
-        ),
+        title: Text('Preferred Time'),
       ),
-      body: Column(
-        children: <Widget>[
-          ListTile(
-            title: Text('Breakfast'),
-            trailing: DropdownButton<String>(
-              value: selectedTime,
-              onChanged: (String? newValue) {
-                setState(() {
-                  selectedTime = newValue!;
-                });
-              },
-              items: <String>['Select Time', '7:00 AM', '7:30 AM', '8:00 AM']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-          ),
-          ListTile(
-            title: Text('Dinner'),
-            trailing: DropdownButton<String>(
-              value: selectedTime,
-              onChanged: (String? newValue) {
-                setState(() {
-                  selectedTime = newValue!;
-                });
-              },
-              items: <String>['Select Time', '7:00 PM', '7:30 PM', '8:00 PM']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              'Daily Visit\n1 Hour',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TableCalendar(
+                firstDay: DateTime.utc(2023, 1, 1),
+                lastDay: DateTime.utc(2030, 12, 31),
+                focusedDay: _selectedDate,
+                onDaySelected: (selectedDay, focusedDay) {
+                  setState(() {
+                    _selectedDate = selectedDay;
+                  });
+                },
               ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          TableCalendar(
-            calendarFormat: _calendarFormat,
-            focusedDay: _focusedDay,
-            firstDay: DateTime.utc(2021, 1, 1),
-            lastDay: DateTime.utc(2030, 12, 31),
-            selectedDayPredicate: (day) {
-              // Use `selectedDayPredicate` to determine which day is currently selected.
-              // If this returns `true`, then `day` will be marked as selected.
-              return isSameDay(_selectedDay, day);
-            },
-            onDaySelected: (selectedDay, focusedDay) {
-              setState(() {
-                _selectedDay = selectedDay;
-                _focusedDay = focusedDay; // update `_focusedDay` to match the selected day when it's tapped
-              });
-            },
-          ),
-        ],
-      ),
-      floatingActionButton: Container(
-        width: double.infinity, // Set width to 100%
-        padding: EdgeInsets.symmetric(horizontal: 16.0), // Add horizontal padding
-        child: ElevatedButton(
-          onPressed: () {
-            // Handle button press
-            Navigator.pushReplacementNamed(context, '/final');
-          },
-          child: Text('Continue'),
-          style: ElevatedButton.styleFrom(
-            primary: Colors.orange, // Set button color to orange
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.date_range,
+                            size: 20,
+                            color: Colors.grey[600],
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                hintText: 'Select date',
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.access_time,
+                            size: 20,
+                            color: Colors.grey[600],
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment
+                                  .spaceBetween,
+                              children: [
+                                DropdownButton<int>(
+                                  value: _hour,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _hour = value!;
+                                    });
+                                  },
+                                  items: List<int>.generate(
+                                      24, (index) => index + 1)
+                                      .map((hour) {
+                                    return DropdownMenuItem<int>(
+                                      value: hour,
+                                      child: Text('$hour'),
+                                    );
+                                  }).toList(),
+                                ),
+                                Text(':'),
+                                DropdownButton<int>(
+                                  value: _minute,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _minute = value!;
+                                    });
+                                  },
+                                  items: List<int>.generate(
+                                      60, (index) => index + 1)
+                                      .map((minute) {
+                                    return DropdownMenuItem<int>(
+                                      value: minute,
+                                      child: Text('$minute'),
+                                    );
+                                  }).toList(),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/final');
+                },
+                child: Text('Submit'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.orangeAccent,
+                  onPrimary: Colors.white,
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                ),
+              ),
+            ],
           ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat, // Align button at the bottom center
     );
   }
 }

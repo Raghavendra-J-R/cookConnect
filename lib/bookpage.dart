@@ -1,7 +1,4 @@
-// TODO Implement this library.
 import 'package:flutter/material.dart';
-
-
 
 void main() {
   runApp(MyApp());
@@ -11,79 +8,177 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cuisine Preferences',
+      title: 'Cuisine Selection',
       theme: ThemeData(
-        primarySwatch: Colors.orange,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        primarySwatch: Colors.blue,
       ),
       home: BookPage(),
     );
   }
 }
 
-class BookPage extends StatefulWidget {
+class CuisineButton extends StatefulWidget {
+  final String title;
+  final bool isSelected;
+  final Function onTap;
+
+  CuisineButton({required this.title, required this.isSelected, required this.onTap});
+
   @override
-  _CuisinePreferencePageState createState() => _CuisinePreferencePageState();
+  _CuisineButtonState createState() => _CuisineButtonState();
 }
 
-class _CuisinePreferencePageState extends State<BookPage> {
-  final List<String> cuisines = ['North Indian', 'South Indian', 'Italian', 'Chinese', 'Mexican'];
-  final Set<String> selectedCuisines = {};
+class _CuisineButtonState extends State<CuisineButton> {
+  bool _isSelected = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isSelected = widget.isSelected;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        widget.onTap();
+        setState(() {
+          _isSelected = !_isSelected;
+        });
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+          color: _isSelected ? Colors.blue : Colors.grey[200],
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Text(
+          widget.title,
+          style: TextStyle(color: _isSelected ? Colors.white : Colors.black),
+        ),
+      ),
+    );
+  }
+}
+
+class BookPage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<BookPage> {
+  bool _northIndian = false;
+  bool _southIndian = false;
+  bool _italian = false;
+  bool _chinese = false;
+  bool _mexican = false;
+  bool _veg = false;
+  bool _nonVeg = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Cuisines'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context), // Handle navigation
-        ),
+        title: Text('Cuisine Selection'),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              'Select multiple cuisines based on your preference',
-              style: Theme.of(context).textTheme.headline6,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Select cuisine based on preference',
+              style: TextStyle(fontSize: 20),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: cuisines.length,
-              itemBuilder: (context, index) {
-                final cuisine = cuisines[index];
-                return ListTile(
-                  title: Text(cuisine),
-                  trailing: selectedCuisines.contains(cuisine)
-                      ? Icon(Icons.check_circle, color: Colors.green)
-                      : Icon(Icons.check_circle_outline),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CuisineButton(
+                  title: 'North Indian',
+                  isSelected: _northIndian,
                   onTap: () {
                     setState(() {
-                      if (selectedCuisines.contains(cuisine)) {
-                        selectedCuisines.remove(cuisine);
-                      } else {
-                        selectedCuisines.add(cuisine);
-                      }
+                      _northIndian = !_northIndian;
                     });
                   },
-                );
+                ),
+                CuisineButton(
+                  title: 'South Indian',
+                  isSelected: _southIndian,
+                  onTap: () {
+                    setState(() {
+                      _southIndian = !_southIndian;
+                    });
+                  },
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CuisineButton(
+                  title: 'Italian',
+                  isSelected: _italian,
+                  onTap: () {
+                    setState(() {
+                      _italian = !_italian;
+                    });
+                  },
+                ),
+                CuisineButton(
+                  title: 'Chinese',
+                  isSelected: _chinese,
+                  onTap: () {
+                    setState(() {
+                      _chinese = !_chinese;
+                    });
+                  },
+                ),
+                CuisineButton(
+                  title: 'Mexican',
+                  isSelected: _mexican,
+                  onTap: () {
+                    setState(() {
+                      _mexican = !_mexican;
+                    });
+                  },
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CuisineButton(
+                  title: 'Veg',
+                  isSelected: _veg,
+                  onTap: () {
+                    setState(() {
+                      _veg = !_veg;
+                    });
+                  },
+                ),
+                CuisineButton(
+                  title: 'Non-Veg',
+                  isSelected: _nonVeg,
+                  onTap: () {
+                    setState(() {
+                      _nonVeg = !_nonVeg;
+                    });
+                  },
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/time');
               },
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.all(16.0),
-            child: ElevatedButton(
               child: Text('Continue'),
-              onPressed: selectedCuisines.isNotEmpty
-                  ? () {
-                // Handle continue action, like submitting the preferences
-                Navigator.pushReplacementNamed(context, '/noofppl');
-              } : null,
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -3,12 +3,7 @@
         android:label="CookConnect"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        <meta-data
-            android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
-            android:value="true" />
-        <meta-data
-            android:name="io.flutter.app.android.SplashScreenDrawable"
-            android:resource="@drawable/chef_logo" />
+
 
         <activity
             android:name=".MainActivity"
