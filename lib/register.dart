@@ -31,7 +31,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         'email': _emailController.text,
       });
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Succesfully Registered')));
+          const SnackBar(content: Text('Succesfully Registered !!!')));
       Navigator.pushNamed(context, '/login');
     } catch (e) {
       print("Error during registration: $e");
