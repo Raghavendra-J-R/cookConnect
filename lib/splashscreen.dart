@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const Text('CookConnect'), // Move text here
             const SizedBox(height: 16),
             Image.asset(
-              'assets/chef_logo.png',
+              'assets/cook2.jpg',
               width: 200,
               height: 200,
               fit: BoxFit.cover,
