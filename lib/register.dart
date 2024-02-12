@@ -27,11 +27,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
       String userId = userCredential.user?.uid ?? '';
 
       _userDatabaseRef.child(userId).set({
-        'username': _usernameController.text,
+        'name': _usernameController,
         'email': _emailController.text,
+        'mobile': _numberController,
       });
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Succesfully Registered !!!')));
+          const SnackBar(content: Text('Succesfully Registered')));
       Navigator.pushNamed(context, '/login');
     } catch (e) {
       print("Error during registration: $e");
@@ -71,6 +72,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           fontSize: 25.0, fontWeight: FontWeight.bold),
                     ),
                   ],
+                ),
+              ),
+              const SizedBox(
+                height: 30.0,
+              ),
+              TextField(
+                controller: _usernameController,
+                decoration: InputDecoration(
+                  hintText: 'Name',
+                  suffixIcon: const Icon(Icons.account_box),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
                 ),
               ),
               const SizedBox(
