@@ -27,9 +27,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
       String userId = userCredential.user?.uid ?? '';
 
       _userDatabaseRef.child(userId).set({
-        'name': _usernameController,
+        'name': _usernameController.text,
         'email': _emailController.text,
-        'mobile': _numberController,
+        'mobile': _numberController.text,
       });
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Succesfully Registered')));

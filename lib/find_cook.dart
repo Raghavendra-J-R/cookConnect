@@ -15,10 +15,10 @@ class _FindACookPageState extends State<FindACookPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Find a Cook'),
+        title: Text('Find a Cook'),
         backgroundColor: Colors.orangeAccent,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
             // Navigate back to the home page
             Navigator.pushReplacementNamed(context, '/home');
@@ -58,18 +58,18 @@ class _FindACookPageState extends State<FindACookPage> {
                 setState(() {
                   suggestions = availableCooks
                       .where((cook) =>
-                          cook.name.toLowerCase().contains(value.toLowerCase()))
+                      cook.name.toLowerCase().contains(value.toLowerCase()))
                       .map((cook) => cook.name)
                       .toList();
                 });
               },
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Search for a cook...',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
 
             // Auto-Suggestions
             if (suggestions.isNotEmpty)
@@ -91,14 +91,13 @@ class _FindACookPageState extends State<FindACookPage> {
                 itemCount: availableCooks.length,
                 itemBuilder: (context, index) {
                   if ((selectedFilter == 'Veg' &&
-                          availableCooks[index].isVeg) ||
+                      availableCooks[index].isVeg) ||
                       (selectedFilter == 'Non-Veg' &&
                           !availableCooks[index].isVeg) ||
                       selectedFilter == 'Both') {
                     return CookCard(cook: availableCooks[index]);
                   } else {
-                    return SizedBox
-                        .shrink(); // Hide the cook card if it doesn't match the filter
+                    return SizedBox.shrink(); // Hide the cook card if it doesn't match the filter
                   }
                 },
               ),
@@ -119,14 +118,30 @@ class CookCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 10),
       child: ListTile(
-        leading: const CircleAvatar(
+        leading: CircleAvatar(
           radius: 30,
-          backgroundImage: AssetImage('assets/prof3.jpg'),
+          backgroundImage: AssetImage(cook.imagePath),
         ),
-        title: Text(cook.name),
-        subtitle: Text(cook.specialty),
+        title: Text(
+          cook.name,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(cook.specialty),
+            Text(
+              cook.isVeg ? 'Veg' : 'Non-Veg',
+              style: TextStyle(color: cook.isVeg ? Colors.green : Colors.red),
+            ),
+            Text(
+              'Phone: ${cook.phoneNumber}',
+              style: TextStyle(color: Colors.grey),
+            ),
+          ],
+        ),
         trailing: ElevatedButton(
           onPressed: () {
             // Navigate to CookDetailsPage
@@ -156,6 +171,8 @@ class Cook {
     required this.imagePath,
     required this.isVeg,
   });
+
+  get phoneNumber => "+91 9876534980";
 }
 
 List<Cook> availableCooks = [

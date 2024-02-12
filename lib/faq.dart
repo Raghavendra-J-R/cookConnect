@@ -9,14 +9,14 @@ class FAQPage extends StatelessWidget {
           'To book a cook, navigate to the "Find a Cook" section and follow the instructions to select a cook and schedule a booking.',
     ),
     FAQItem(
-      question: 'Can I cancel a booking?',
+      question: 'How do I contact my cook?',
       answer:
-          'Yes, you can cancel a booking by going to the "My Bookings" section and selecting the booking you want to cancel. Follow the prompts to cancel the booking.',
+          'You can contact your cook by going to the "Cook Details" section of the app and selecting the booking for which you want to contact the cook. From there, you can get the contact of the cook through the app.',
     ),
     FAQItem(
       question: 'How can I contact customer support?',
       answer:
-          'For assistance, please contact our customer support team at support@example.com or call our helpline at (123) 456-7890.',
+          'For assistance, please contact our customer support team at support@cook.in or call our helpline at +91 6382465321.',
     ),
     // Add more FAQ items as needed
   ];

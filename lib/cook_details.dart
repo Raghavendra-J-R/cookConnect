@@ -6,6 +6,7 @@ class CookDetailsPage extends StatelessWidget {
   final Cook cook;
 
   CookDetailsPage({required this.cook});
+
   void _showSubmitAlert(BuildContext context) {
     showDialog(
       context: context,
@@ -43,6 +44,7 @@ class CookDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Cook Details'),
+        backgroundColor: Colors.orangeAccent,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -50,32 +52,79 @@ class CookDetailsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: 20),
-            CircleAvatar(
-              radius: 60,
-              backgroundImage: AssetImage(cook.imagePath),
-            ),
-            SizedBox(height: 10),
-            Text(
-              cook.name,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 5),
-            Text(
-              'Specialty: ${cook.specialty}',
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 5),
-            Text(
-              'Dietary Preference: ${cook.isVeg ? 'Vegetarian' : 'Non-Vegetarian'}',
-              textAlign: TextAlign.center,
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  height: 160,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.orangeAccent,
+                    image: DecorationImage(
+                      image: AssetImage(cook.imagePath),
+                      fit: BoxFit.cover,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        blurRadius: 10,
+                        offset: Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                ),
+                Text(
+                  cook.name,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                _showSubmitAlert(context); // Show alert message
-              },
-              child: Text('Book'),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    'Specialty: ${cook.specialty}',
+                    style: TextStyle(fontSize: 18),
+                    textAlign: TextAlign.left,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Dietary Preference: ${cook.isVeg ? 'Vegetarian' : 'Non-Vegetarian'}',
+                    style: TextStyle(fontSize: 18),
+                    textAlign: TextAlign.left,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Phone Number: ${cook.phoneNumber}',
+                    style: TextStyle(fontSize: 18),
+                    textAlign: TextAlign.left,
+                  ),
+                  SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: () {
+                      _showSubmitAlert(context); // Show alert message
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.orangeAccent,
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    child: Text(
+                      'Book',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
